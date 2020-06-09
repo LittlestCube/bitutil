@@ -1,3 +1,5 @@
+package littlecube.bitutil;
+
 public abstract class BitUtil
 {
 	static int bit(int input, int bitnum)
