@@ -17,7 +17,7 @@ public abstract class BitUtil
 		return (byte) bit((int) input, bitnum);
 	}
 	
-	public static int parity(byte input)
+	public static int parity(int input)
 	{
 		int parity = 0;
 		
@@ -30,5 +30,15 @@ public abstract class BitUtil
 		}
 		
 		return parity;
+	}
+	
+	public static short parity(short input)
+	{
+		return (short) parity((int) input);
+	}
+	
+	public static byte parity(byte input)
+	{
+		return (byte) parity((int) input);
 	}
 }
