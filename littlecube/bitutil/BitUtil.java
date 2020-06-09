@@ -4,7 +4,7 @@ public abstract class BitUtil
 {
 	public static int bit(int input, int bitnum)
 	{
-		return (input & (0x80 >> bitnum)) >> (7 - bitnum);
+		return (input & (0x80 >> (7 - bitnum))) >> bitnum;
 	}
 	
 	public static short bit(short input, int bitnum)
