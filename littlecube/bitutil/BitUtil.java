@@ -17,15 +17,15 @@ public abstract class BitUtil
 		return (byte) bit((int) input, bitnum);
 	}
 	
-	public static boolean parity(byte input)
+	public static int parity(byte input)
 	{
-		boolean parity = false;
+		int parity = 0;
 		
 		for (int i = 0; i < 8; i++)
 		{
 			if (bit(input, i) == 1)
 			{
-				parity ^= true;
+				parity ^= 1;
 			}
 		}
 		
