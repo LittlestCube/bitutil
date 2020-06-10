@@ -17,6 +17,21 @@ public abstract class BitUtil
 		return (byte) bit((int) input, bitnum);
 	}
 	
+	public static int craftBit(int input, int bitToMove, int moveTo)
+	{
+		return (bit(input, bitToMove) << moveTo);
+	}
+	
+	public static short craftBit(short input, int bitToMove, int moveTo)
+	{
+		return (short) craftBit((int) input, bitToMove, moveTo);
+	}
+	
+	public static byte craftBit(byte input, int bitToMove, int moveTo)
+	{
+		return (byte) craftBit((int) input, bitToMove, moveTo);
+	}
+	
 	public static int subByte(int input, int bitnum)
 	{
 		int selectedByte = (8 * bitnum);
