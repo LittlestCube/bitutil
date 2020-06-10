@@ -22,7 +22,7 @@ public abstract class BitUtil
 		return (1 << moveTo);
 	}
 	
-	public static short craftBitShort(short input, int bitToMove, int moveTo)
+	public static short craftBitShort(int moveTo)
 	{
 		return (short) craftBitInt(moveTo);
 	}
