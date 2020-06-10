@@ -17,19 +17,19 @@ public abstract class BitUtil
 		return (byte) bit((int) input, bitnum);
 	}
 	
-	public static int craftBit(int input, int bitToMove, int moveTo)
+	public static int craftBitInt(int moveTo)
 	{
-		return (bit(input, bitToMove) << moveTo);
+		return (1 << moveTo);
 	}
 	
-	public static short craftBit(short input, int bitToMove, int moveTo)
+	public static short craftBitShort(short input, int bitToMove, int moveTo)
 	{
-		return (short) craftBit((int) input, bitToMove, moveTo);
+		return (short) craftBitInt(moveTo);
 	}
 	
-	public static byte craftBit(byte input, int bitToMove, int moveTo)
+	public static byte craftBitByte(int moveTo)
 	{
-		return (byte) craftBit((int) input, bitToMove, moveTo);
+		return (byte) craftBitInt(moveTo);
 	}
 	
 	public static int subByte(int input, int bitnum)
