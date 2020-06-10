@@ -19,7 +19,7 @@ public abstract class BitUtil
 	
 	public static int subByte(int input, int bitnum)
 	{
-		int selectedByte = (16 * bitnum);
+		int selectedByte = (8 * bitnum);
 		
 		return ((input & (0xFF << selectedByte))) >> selectedByte;
 	}
