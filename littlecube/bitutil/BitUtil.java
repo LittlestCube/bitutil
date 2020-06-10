@@ -17,6 +17,18 @@ public abstract class BitUtil
 		return (byte) bit((int) input, bitnum);
 	}
 	
+	public static int subByte(int input, int bitnum)
+	{
+		int selectedByte = (16 * bitnum);
+		
+		return ((input & (0xFF << selectedByte))) >> selectedByte;
+	}
+	
+	public static short subByte(short input, int bitnum)
+	{
+		return (short) subByte((int) input, bitnum);
+	}
+	
 	public static int parity(int input)
 	{
 		int parity = 0;
