@@ -4,7 +4,7 @@ public abstract class BitUtil
 {
 	public static int bit(int input, int bitnum)
 	{
-		return (input & (0x80 >> (7 - bitnum))) >> bitnum;
+		return ((input & (0x1 << (bitnum))) >> bitnum) & 0x1;
 	}
 	
 	public static short bit(short input, int bitnum)
@@ -32,28 +32,25 @@ public abstract class BitUtil
 		return (byte) craftBitInt(moveTo);
 	}
 	
-	public static int subByte(int input, int bitnum)
+	public static int subByte(int input, int bytenum)
 	{
-		int selectedByte = (8 * bitnum);
+		int selectedByte = (8 * bytenum);
 		
 		return ((input & (0xFF << selectedByte))) >> selectedByte;
 	}
 	
-	public static short subByte(short input, int bitnum)
+	public static short subByte(short input, int bytenum)
 	{
-		return (short) subByte((int) input, bitnum);
+		return (short) subByte((int) input, bytenum);
 	}
 	
 	public static int parity(int input)
 	{
 		int parity = 0;
 		
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 32; i++)
 		{
-			if (bit(input, i) == 1)
-			{
-				parity ^= 1;
-			}
+			parity ^= bit(input, i);
 		}
 		
 		return parity;
@@ -61,11 +58,11 @@ public abstract class BitUtil
 	
 	public static short parity(short input)
 	{
-		return (short) parity((int) input);
+		return (short) parity((int) input & 0xFFFF);
 	}
 	
 	public static byte parity(byte input)
 	{
-		return (byte) parity((int) input);
+		return (byte) parity((int) input & 0xFF);
 	}
 }
