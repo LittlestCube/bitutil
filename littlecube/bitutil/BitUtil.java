@@ -2,20 +2,22 @@ package littlecube.bitutil;
 
 public abstract class BitUtil
 {
-	public static int bit(int input, int bitnum)
+	public static int bit(int position, int value)
 	{
-		return ((input & (0x1 << (bitnum))) >> bitnum) & 0x1;
+		return ((position & (0x1 << (value))) >> value) & 0x1;
 	}
 	
-	public static short bit(short input, int bitnum)
+	public static short bit(short position, int value)
 	{
-		return (short) bit((int) input, bitnum);
+		return (short) bit((int) position, value);
 	}
 	
-	public static byte bit(byte input, int bitnum)
+	public static byte bit(byte position, int value)
 	{
-		return (byte) bit((int) input, bitnum);
+		return (byte) bit((int) position, value);
 	}
+	
+	
 	
 	public static int craftBitInt(int moveTo)
 	{
@@ -32,17 +34,21 @@ public abstract class BitUtil
 		return (byte) craftBitInt(moveTo);
 	}
 	
-	public static int subByte(int input, int bytenum)
+	
+	
+	public static int subByte(int position, int value)
 	{
-		int selectedByte = (8 * bytenum);
+		int selectedByte = (8 * value);
 		
-		return ((input & (0xFF << selectedByte))) >> selectedByte;
+		return ((position & (0xFF << selectedByte))) >> selectedByte;
 	}
 	
-	public static short subByte(short input, int bytenum)
+	public static short subByte(short position, int value)
 	{
-		return (short) subByte((int) input, bytenum);
+		return (short) subByte((int) position, value);
 	}
+	
+	
 	
 	public static int parity(int input)
 	{
