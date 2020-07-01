@@ -38,17 +38,17 @@ public class Test
 				test("craftBitInt(int moveTo)", "64", Integer.toString(bit6));
 			}
 			
-			int subint = BitUtil.subByte(0xDEADBEEF, 2);
-			short subshort = BitUtil.subByte((short) 0xBEEF, 1);
+			int subint = BitUtil.subByte(2, 0xDEADBEEF);
+			short subshort = BitUtil.subByte(1, (short) 0xBEEF);
 			
 			if (subint != 0xAD)
 			{
-				test("subByte(int input, int bytenum)", "0xAD", "0x" + Integer.toHexString(subint).toUpperCase());
+				test("subByte(int position, int val)", "0xAD", "0x" + Integer.toHexString(subint).toUpperCase());
 			}
 			
 			if (subshort != 0xBE)
 			{
-				test("subByte(short input, int bytenum)", "0xBE", "0x" + Integer.toHexString(subshort).toUpperCase());
+				test("subByte(int position, short val)", "0xBE", "0x" + Integer.toHexString(subshort).toUpperCase());
 			}
 			
 			int pint = BitUtil.parity((int) 0x80FFFFFF);

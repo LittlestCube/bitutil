@@ -39,18 +39,39 @@ public abstract class BitUtil
 		return (byte) ((bit7 << 7) | (bit6 << 6) | (bit5 << 5) | (bit4 << 4) | (bit3 << 3) | (bit2 << 2) | (bit1 << 1) | (bit0));
 	}
 	
-	
-	
-	public static int subByte(int position, int value)
+	public static short craftShort(int nbyte1, int nbyte0)
 	{
-		int selectedByte = (8 * value);
+		short s = 0;
 		
-		return ((position & (0xFF << selectedByte))) >> selectedByte;
+		s = (short) setByte(0, nbyte0, s);
+		s = (short) setByte(1, nbyte1, s);
+		
+		return s;
 	}
 	
-	public static short subByte(short position, int value)
+	
+	
+	public static int setByte(int position, int nbyte, int val)
 	{
-		return (short) subByte((int) position, value);
+		nbyte = nbyte & 0xFF;
+		
+		int actualPosition = position * 8;
+		
+		val = (short) ((nbyte << actualPosition) | (val & ~(0xFF << actualPosition)));
+		
+		return val;
+	}
+	
+	public static int subByte(int position, int val)
+	{
+		int selectedByte = (8 * position);
+		
+		return ((val & (0xFF << selectedByte))) >> selectedByte;
+	}
+	
+	public static short subByte(int position, short val)
+	{
+		return (short) subByte(position, (int) val);
 	}
 	
 	
