@@ -4,7 +4,7 @@ public abstract class BitUtil
 {
 	public static int bit(int position, int value)
 	{
-		return ((position & (0x1 << (value))) >> value) & 0x1;
+		return ((value & (0x1 << (position))) >> position) & 0x1;
 	}
 	
 	public static short bit(short position, int value)
@@ -82,7 +82,7 @@ public abstract class BitUtil
 		
 		for (int i = 0; i < 32; i++)
 		{
-			parity ^= bit(input, i);
+			parity ^= bit(i, input);
 		}
 		
 		return parity;

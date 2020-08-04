@@ -11,14 +11,14 @@ public class Test
 			byte testbyte = 0x55;
 			
 			String bitbyte =
-			Integer.toString(BitUtil.bit(testbyte, 7)) +
-			Integer.toString(BitUtil.bit(testbyte, 6)) +
-			Integer.toString(BitUtil.bit(testbyte, 5)) +
-			Integer.toString(BitUtil.bit(testbyte, 4)) +
-			Integer.toString(BitUtil.bit(testbyte, 3)) +
-			Integer.toString(BitUtil.bit(testbyte, 2)) +
-			Integer.toString(BitUtil.bit(testbyte, 1)) +
-			Integer.toString(BitUtil.bit(testbyte, 0));
+			Integer.toString(BitUtil.bit(7, testbyte)) +
+			Integer.toString(BitUtil.bit(6, testbyte)) +
+			Integer.toString(BitUtil.bit(5, testbyte)) +
+			Integer.toString(BitUtil.bit(4, testbyte)) +
+			Integer.toString(BitUtil.bit(3, testbyte)) +
+			Integer.toString(BitUtil.bit(2, testbyte)) +
+			Integer.toString(BitUtil.bit(1, testbyte)) +
+			Integer.toString(BitUtil.bit(0, testbyte));
 			
 			if (!bitbyte.equals("01010101"))
 			{
