@@ -7,14 +7,31 @@ public abstract class BitUtil
 		return ((value & (0x1 << (position))) >> position) & 0x1;
 	}
 	
-	public static short bit(short position, int value)
+	public static short bit(int position, short value)
 	{
-		return (short) bit((int) position, value);
+		return (short) bit(position, (int) value);
 	}
 	
-	public static byte bit(byte position, int value)
+	public static byte bit(int position, byte value)
 	{
-		return (byte) bit((int) position, value);
+		return (byte) bit(position, (int) value);
+	}
+	
+	public static int setBit(int position, int value, int destination)
+	{
+		value %= 2;
+		
+		if (value == 0)
+		{
+			destination &= ~((0x1 << position));
+		}
+		
+		else
+		{
+			destination |= (0x1 << position);
+		}
+		
+		return destination;
 	}
 	
 	

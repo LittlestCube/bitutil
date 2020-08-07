@@ -10,65 +10,61 @@ public class Test
 		{
 			byte testbyte = 0x55;
 			
-			String bitbyte =
-			Integer.toString(BitUtil.bit(7, testbyte)) +
-			Integer.toString(BitUtil.bit(6, testbyte)) +
-			Integer.toString(BitUtil.bit(5, testbyte)) +
-			Integer.toString(BitUtil.bit(4, testbyte)) +
-			Integer.toString(BitUtil.bit(3, testbyte)) +
-			Integer.toString(BitUtil.bit(2, testbyte)) +
-			Integer.toString(BitUtil.bit(1, testbyte)) +
-			Integer.toString(BitUtil.bit(0, testbyte));
+			int bitbyte = BitUtil.craftByte(
+			BitUtil.bit(7, testbyte),
+			BitUtil.bit(6, testbyte),
+			BitUtil.bit(5, testbyte),
+			BitUtil.bit(4, testbyte),
+			BitUtil.bit(3, testbyte),
+			BitUtil.bit(2, testbyte),
+			BitUtil.bit(1, testbyte),
+			BitUtil.bit(0, testbyte));
 			
-			if (!bitbyte.equals("01010101"))
-			{
-				test("bit(int input, int bitnum)", "01010101", bitbyte);
-			}
+			test("bit(int input, int bitnum)", 0x55, bitbyte);
+			
+			
 			
 			int bit1 = BitUtil.craftBitInt(1);
 			int bit6 = BitUtil.craftBitInt(6);
 			
 			if (bit1 != 2)
 			{
-				test("craftBitInt(int moveTo)", "2", Integer.toString(bit1));
+				test("craftBitInt(int moveTo)", 2, bit1);
 			}
 			
 			if (bit6 != 64)
 			{
-				test("craftBitInt(int moveTo)", "64", Integer.toString(bit6));
+				test("craftBitInt(int moveTo)", 64, bit6);
 			}
+			
+			
 			
 			int subint = BitUtil.subByte(2, 0xDEADBEEF);
 			short subshort = BitUtil.subByte(1, (short) 0xBEEF);
 			
-			if (subint != 0xAD)
-			{
-				test("subByte(int position, int val)", "0xAD", "0x" + Integer.toHexString(subint).toUpperCase());
-			}
+			test("subByte(int position, int val)", 0xAD, subint);
 			
-			if (subshort != 0xBE)
-			{
-				test("subByte(int position, short val)", "0xBE", "0x" + Integer.toHexString(subshort).toUpperCase());
-			}
+			test("subByte(int position, short val)", 0xBE, subshort);
+			
+			
 			
 			int pint = BitUtil.parity((int) 0x80FFFFFF);
 			short pshort = BitUtil.parity((short) 0x07);
 			byte pbyte = BitUtil.parity((byte) 0x00);
 			
-			if (pint != 1)
-			{
-				test("parity(int input)", "1", Integer.toString(pint));
-			}
+			test("parity(int input)", 1, pint);
 			
-			if (pshort != 1)
-			{
-				test("parity(short input)", "1", Integer.toString(pshort));
-			}
+			test("parity(short input)", 1, pshort);
 			
-			if (pbyte != 0)
-			{
-				test("parity(byte input)", "0", Integer.toString(pbyte));
-			}
+			test("parity(byte input)", 0, pbyte);
+			
+			
+			
+			int bitSet = 0;
+			
+			bitSet = BitUtil.setBit(2, 1, bitSet);
+			
+			test("setBit(int position, int value, int destination)", 4, bitSet);
 		}
 		
 		catch (Exception e)
@@ -81,8 +77,11 @@ public class Test
 		System.out.println("All tests passed! Ready to push.");
 	}
 	
-	static void test(String function, String expected, String testvalue) throws Exception
+	static void test(String function, int expected, int testvalue) throws Exception
 	{
-		throw new Exception("BitUtil." + function + " function failed! Result expected was " + expected + ", but test resulted in " + testvalue);
+		if (expected != testvalue)
+		{
+			throw new Exception(String.format("BitUtil.%s method failed! Result expected was 0x%08X, but test resulted in 0x%08X", function, expected, testvalue));
+		}
 	}
 }
